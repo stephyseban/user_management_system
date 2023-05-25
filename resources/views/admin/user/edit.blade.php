@@ -41,12 +41,12 @@ Admin
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Edit Project </h1>
+          <h1>Edit User </h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Project </li>
+            <li class="breadcrumb-item active">User </li>
           </ol>
         </div>
       </div>
@@ -64,51 +64,49 @@ Admin
           @endif
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Project</h3>
+              <h3 class="card-title">User</h3>
             </div>
 
-            <form action="{{route('update.project',['id'=>$data->id])}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('user.update',['id'=>$data->id])}}" method="post" enctype="multipart/form-data">
               @csrf
               <div class="card-body">
                 <div class="form-group">
-                  <label for="title">Project Name</label>
-                  <input type="text" name="title" class="form-control" id="title" placeholder="Enter title" value="{{ $data->title }}" maxlength="50">
-                  @error('title')
+                  <label for="title"> Name</label>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Enter name" value="{{ $data->name }}" maxlength="50">
+                  @error('name')
                   <div class="error">{{ $message }}</div>
                   @enderror
                 </div>
 
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Category</label>
-                  <select class="form-control" name="category" id="category">
-                    <option value="">Select</option>
-                    @if($category)
-                    @foreach($category as $cat)
-                    <option value="{{$cat->id}}" @if($cat->id=== $data->category_id) selected='selected' @endif>{{$cat->category}}</option>
-                    @endforeach
-                    @endif
-                  </select>
-                  @error('category')
+                  <label for="title"> Name</label>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Enter name" value="{{ $data->name }}" maxlength="50">
+                  @error('name')
+                  <div class="error">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="title"> Email</label>
+                  <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value="{{ $data->email }}" maxlength="50">
+                  @error('email')
+                  <div class="error">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="title"> Password</label>
+                  <input type="password" name="password" class="form-control" id="password" placeholder="Enter password"  maxlength="50">
+                  @error('password')
                   <div class="error">{{ $message }}</div>
                   @enderror
                 </div>
 
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Title Image(2500*1500)</label>
-
-                  <input type="file" name="images" class="form-control" accept="image/*" id="images">
-                  <br>
-                  @if($data->image)
-                  <img src="{{ url('storage/project-image/'.$data->image) }}" alt="{{ $data->image }}" height="120" id="old_iamge">
-                  @endif
-
-                  @error('images')
+                  <label for="title"> Confirm Password</label>
+                  <input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Enter confirm_password"  maxlength="50">
+                  @error('confirm_password')
                   <div class="error">{{ $message }}</div>
                   @enderror
-                  <div id="preview"> </div>
                 </div>
-
-
               </div>
 
               <div class="card-footer">

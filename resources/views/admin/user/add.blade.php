@@ -63,12 +63,12 @@ Admin
               <h3 class="card-title">User</h3>
             </div>
 
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="{{url('user-store')}}" method="post" >
               @csrf
               <div class="card-body">
                 <div class="form-group">
                   <label for="title"> Name</label>
-                  <input type="text" name="name" class="form-control" id="title" placeholder="Enter name" value="{{ old('name') }}" maxlength="50">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Enter name" value="{{ old('name') }}" maxlength="50">
                   @error('name')
                   <div class="error">{{ $message }}</div>
                   @enderror
@@ -83,15 +83,15 @@ Admin
                 </div>
                 <div class="form-group">
                   <label for="title"> Password</label>
-                  <input type="password" name="password" class="form-control" id="password" placeholder="Enter name" value="{{ old('name') }}" maxlength="50">
+                  <input type="text" name="password" class="form-control" id="password" placeholder="Enter password" value="{{ old('password') }}" maxlength="50">
                   @error('password')
                   <div class="error">{{ $message }}</div>
                   @enderror
                 </div>
                 <div class="form-group">
                   <label for="title"> Confirm Password</label>
-                  <input type="text" name="confirm_password" class="form-control" id="title" placeholder="Enter name" value="{{ old('name') }}" maxlength="50">
-                  @error('name')
+                  <input type="text" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Enter confirm Password" value="{{ old('password_confirmation') }}" maxlength="50">
+                  @error('password_confirmation')
                   <div class="error">{{ $message }}</div>
                   @enderror
                 </div>
@@ -115,30 +115,5 @@ Admin
 </div>
 
 
-<script>
-$(document).ready(function() {
-  if (window.File && window.FileList && window.FileReader) {
-    $("#images").on("change", function(e) {
-      var files = e.target.files,
-        filesLength = files.length;
-      for (var i = 0; i < filesLength; i++) {
-        var f = files[i]
-        var fileReader = new FileReader();
-        fileReader.onload = (function(e) {
-          var file = e.target;
-          $("<span class=\"pip\">" +
-            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>").insertAfter("#images");
-          $(".remove").click(function(){
-            $(this).parent(".pip").remove();
-          });
-          
-        });
-        fileReader.readAsDataURL(f);
-      }
-    });
-  } else {
-    alert("Your browser doesn't support to File API")
-  }
-});
-</script>
+
 @endsection

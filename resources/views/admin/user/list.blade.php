@@ -3,7 +3,10 @@
 Admin
 @endsection
 @section('content')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+  
+
 
 <div class="content-wrapper">
 
@@ -58,7 +61,7 @@ Admin
                     <td> {{$user->email??''}}</td>
                     
                     <td>
-                      <a href=""> <button type="button" class="btn btn-info ">Edit</button> </a> &nbsp;
+                      <a href="{{url('user-edit/'.$user->id)}}"> <button type="button" class="btn btn-info ">Edit</button> </a> &nbsp;
                       <a href="#"> <button type="button" class="btn btn-danger btnDelete" data-id="{{$user->id}}">delete</button> <a>
                     </td>
                   </tr>
@@ -77,7 +80,8 @@ Admin
   </section>
 
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 <script>
   $(document).ready(function() {
     $("#example2").on('click', '.btnDelete', function() {
@@ -101,14 +105,14 @@ Admin
           headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
-          url: "{{url('admin/user/delete')}}" + '/' + id,
+          url: "{{url('user-delete')}}" + '/' + id,
           data: {
             'id': id
           },
           type: 'POST',
 
           success: function(data) {
-            if (data.status == 'success') {
+            if (data.status == true) {
               swal(
                 'Deleted!', data.msg, 'success'
               ).then(function() {
