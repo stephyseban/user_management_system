@@ -5,7 +5,7 @@ Admin
 @section('content')
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-  
+
 
 
 <div class="content-wrapper">
@@ -59,7 +59,7 @@ Admin
                     <td> {{$i}}</td>
                     <td> {{$user->name??''}}</td>
                     <td> {{$user->email??''}}</td>
-                    
+
                     <td>
                       <a href="{{url('user-edit/'.$user->id)}}"> <button type="button" class="btn btn-info ">Edit</button> </a> &nbsp;
                       <a href="#"> <button type="button" class="btn btn-danger btnDelete" data-id="{{$user->id}}">delete</button> <a>

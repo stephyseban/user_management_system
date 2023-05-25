@@ -77,7 +77,7 @@ Admin
                   <div class="error">{{ $message }}</div>
                   @enderror
                 </div>
-              
+
                 <div class="form-group">
                   <label for="title"> Email</label>
                   <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" value="{{ $data->email }}" maxlength="50">
@@ -87,15 +87,15 @@ Admin
                 </div>
                 <div class="form-group">
                   <label for="title"> Password</label>
-                  <input type="password" name="password" class="form-control" id="password" placeholder="Enter password"  maxlength="50">
+                  <input type="password" name="password" class="form-control" id="password" placeholder="Enter password" maxlength="50">
                   @error('password')
                   <div class="error">{{ $message }}</div>
                   @enderror
                 </div>
-          <input type="hidden" name ="id" value=" {{ $data->id }} ">
+                <input type="hidden" name="id" value=" {{ $data->id }} ">
                 <div class="form-group">
                   <label for="title"> Confirm Password</label>
-                  <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Enter confirm_password"  maxlength="50">
+                  <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Enter confirm_password" maxlength="50">
                   @error('password_confirmation')
                   <div class="error">{{ $message }}</div>
                   @enderror

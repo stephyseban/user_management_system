@@ -5,7 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Auth\VerificationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,9 +22,12 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('home');
+Route::get('/email/verify',  [VerificationController::class,'show'])->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}',  [VerificationController::class,'verify'])->name('verification.verify')->middleware(['signed']);
+Route::post('/email/resend', [VerificationController::class,'resend'] )->name('verification.resend');
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -38,11 +41,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::post('user-update/{id}', [AdminController::class, 'userUpdate'])->name('user.update');
     });
 
-    Route::group(['prefix' => 'user','middleware' => ['verified'] ], function () {
+    Route::group(['prefix' => 'user','middleware' => 'verified'], function () {
         Route::get('/dashboard', [UserController::class, 'userDashboard'])->name('user.dashboard');
         Route::get('list', [UserController::class, 'userindex'])->name('user.users.list');
         Route::get('profile-edit', [UserController::class, 'profileEdit'])->name('profile.edit');
         Route::post('profile-update', [UserController::class, 'profileUpdate'])->name('profile.update');
-
     });
 });
