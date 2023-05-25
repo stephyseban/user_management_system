@@ -28,7 +28,7 @@
 
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{route('dashboard')}}" class="nav-link {{ request()->is('admin/dashboard') ? 'active' : ''}}">
+              <a href="{{route('user.dashboard')}}" class="nav-link {{ request()->is('admin/dashboard') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>Dashboard</p>
               </a>
@@ -38,13 +38,22 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link {{ request()->is('admin/project*') ? 'active' : ''}}">
+          <a href="{{route('user.users.list')}}" class="nav-link {{ request()->is('user/list*') ? 'active' : ''}}">
             <i class="nav-icon fas fa-th"></i>
             <p>
-              Projects
+              User
             </p>
           </a>
         </li> 
+
+        <li class="nav-item">
+          <a href="{{route('profile.edit')}}" class="nav-link {{ request()->is('user/profile-edit*') ? 'active' : ''}}">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Profile
+            </p>
+          </a>
+        </li>
 
   </div>
   <!-- /.sidebar -->

@@ -7,7 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UserStoreRequest extends FormRequest
 {
-    use FailedValidation;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,8 +25,8 @@ class UserStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|regex:/^[a-zA-Z]+$/u|max:255|unique:users,name,' . $this->id,
-            'email' => 'requird|unique',
+            'name' => 'required|regex:/^[a-zA-Z]+$/u|max:255',
+            'email' => 'required|email|unique:users,email,' . $this->email,
             'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'min:6'
         ];

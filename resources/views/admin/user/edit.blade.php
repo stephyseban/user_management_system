@@ -77,7 +77,7 @@ Admin
                   <div class="error">{{ $message }}</div>
                   @enderror
                 </div>
-
+                <input type ="hidden" name="id" value="{{$data->id}}">
                 <div class="form-group">
                   <label for="title"> Name</label>
                   <input type="text" name="name" class="form-control" id="name" placeholder="Enter name" value="{{ $data->name }}" maxlength="50">
@@ -102,8 +102,8 @@ Admin
 
                 <div class="form-group">
                   <label for="title"> Confirm Password</label>
-                  <input type="password" name="confirm_password" class="form-control" id="confirm_password" placeholder="Enter confirm_password"  maxlength="50">
-                  @error('confirm_password')
+                  <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Enter confirm_password"  maxlength="50">
+                  @error('password_confirmation')
                   <div class="error">{{ $message }}</div>
                   @enderror
                 </div>
@@ -121,31 +121,4 @@ Admin
   </section>
 
 </div>
-<script>
-  $(document).ready(function() {
-    if (window.File && window.FileList && window.FileReader) {
-      $("#images").on("change", function(e) {
-        var files = e.target.files,
-          filesLength = files.length;
-        for (var i = 0; i < filesLength; i++) {
-          var f = files[i]
-          var fileReader = new FileReader();
-          fileReader.onload = (function(e) {
-            var file = e.target;
-            $("<span class=\"pip\">" +
-              "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>").insertAfter("#images");
-            $(".remove").click(function() {
-              $(this).parent(".pip").remove();
-            });
-
-          });
-          fileReader.readAsDataURL(f);
-          $('#old_iamge').hide();
-        }
-      });
-    } else {
-      alert("Your browser doesn't support to File API")
-    }
-  });
-</script>
 @endsection
