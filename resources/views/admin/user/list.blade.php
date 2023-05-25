@@ -47,6 +47,7 @@ Admin
                     <th>Slno</th>
                     <th> Name</th>
                     <th>Email</th>
+                    <th>Role</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -59,7 +60,7 @@ Admin
                     <td> {{$i}}</td>
                     <td> {{$user->name??''}}</td>
                     <td> {{$user->email??''}}</td>
-
+                    <td> {{$user->getRole->name??''}}</td>
                     <td>
                       <a href="{{url('user-edit/'.$user->id)}}"> <button type="button" class="btn btn-info ">Edit</button> </a> &nbsp;
                       <a href="#"> <button type="button" class="btn btn-danger btnDelete" data-id="{{$user->id}}">delete</button> <a>

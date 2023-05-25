@@ -34,7 +34,7 @@ class AdminController extends Controller
      */
     public function userindex()
     {
-        $users = User::where('deleted_at', null)->where('role_id', config('common.role.user'))->where('status', 0)->get();
+        $users = User::where('deleted_at', null)->where('role_id', config('common.role.user'))->where('status', 0)->with('getRole')->get();
         return view('admin.user.list', compact('users'));
     }
     /**
